@@ -5,16 +5,12 @@ import (
 	// "log"
 
 	"example.com/mpl/database"
-	"example.com/mpl/migration"
 	"example.com/mpl/routes"
-	"example.com/mpl/seeder"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	database.InitDB()
-	migration.MigrateTeamsTable()
-	seeder.SeedData()
 
 	server := gin.Default()
 
