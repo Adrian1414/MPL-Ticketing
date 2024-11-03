@@ -11,7 +11,8 @@ import (
 
 func main() {
 	database.InitDB()
-
+	defer database.DB.Close()
+	
 	server := gin.Default()
 
 	routes.RegisterRoute(server)
