@@ -10,9 +10,11 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
+	"github.com/nedpals/supabase-go"
 )
 
 var DB *sqlx.DB
+var Client *supabase.Client
 
 func InitDB() {
 	// Memuat file .env
@@ -20,6 +22,12 @@ func InitDB() {
     if err != nil {
         log.Fatal("Error loading .env file")
     }
+
+	//setup supabase
+	supabaseUrl := os.Getenv("SUPABASE_URL")
+    supabaseKey := os.Getenv("SUPABASE_KEY")
+
+	Client = supabase.CreateClient(supabaseUrl, supabaseKey)
 
     // Mengambil DSN dari environment variable
     dsn := os.Getenv("DB_DSN")

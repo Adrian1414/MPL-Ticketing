@@ -38,7 +38,7 @@ func GetTeamByID(id int64) (*Team, error) {
 }
 
 // Fungsi untuk mendapatkan ID terkecil yang kosong
-func getAvailableID() (int64, error) {
+func getAvailableIDTeam() (int64, error) {
 	var id int64
 	query := `
         SELECT COALESCE(
@@ -53,8 +53,8 @@ func getAvailableID() (int64, error) {
 	return id, nil
 }
 
-func (t *Team) Save() error {
-	availableID, err := getAvailableID()
+func (t *Team) SaveTeam() error {
+	availableID, err := getAvailableIDTeam()
 	if err != nil {
 		return err
 	}
@@ -70,7 +70,7 @@ func (t *Team) Save() error {
 	return nil
 }
 
-func (t *Team) Update() error {
+func (t *Team) UpdateTeam() error {
 	// Update existing team in the database
 	query := "UPDATE teams SET name = $1 WHERE id = $2"
 	_, err := database.DB.Exec(query, t.Name, t.ID)
@@ -80,7 +80,7 @@ func (t *Team) Update() error {
 	return nil
 }
 
-func (t *Team) Delete() error {
+func (t *Team) DeleteTeam() error {
 	// Delete team by id from the database
 	query := "DELETE FROM teams WHERE id = $1"
 	// exec untuk menghapus satu row

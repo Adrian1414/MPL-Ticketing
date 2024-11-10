@@ -1,9 +1,16 @@
 {
-    "name":"backend",
-    "version":"1.0.0",
-    "private":true,
-    "scripts":{
-       "dev":"go run main.go",
-       "build":"go build"
-    }
- }
+   "name": "backend",
+   "version": "1.0.0",
+   "private": true,
+   "scripts": {
+      "dev": "go run main.go",
+      "build": "go build"
+   },
+   "devDependencies": {
+      "@snaplet/copycat": "^5.1.0",
+      "@snaplet/seed": "0.98.0",
+      "@types/pg": "^8.11.10",
+      "pg": "^8.13.1",
+      "supabase": "^1.219.2"
+   }
+}

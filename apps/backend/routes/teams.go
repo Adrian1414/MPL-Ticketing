@@ -47,7 +47,7 @@ func createTeam(c *gin.Context) {
 		})
 		return
 	}
-	err = team.Save()
+	err = team.SaveTeam()
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -82,7 +82,7 @@ func updateTeam(c *gin.Context) {
 	}
 	team.ID = teamId
 	// team.Name = teamName
-	err = team.Update()
+	err = team.UpdateTeam()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Could not update team",
@@ -111,7 +111,7 @@ func deleteTeam(c *gin.Context) {
 		})
 		return
 	}
-	err = team.Delete()
+	err = team.DeleteTeam()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Could not delete team",
