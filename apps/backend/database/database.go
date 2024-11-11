@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"github.com/nedpals/supabase-go"
 )
@@ -18,10 +18,10 @@ var Client *supabase.Client
 
 func InitDB() {
 	// Memuat file .env
-    err := godotenv.Load()
-    if err != nil {
-        log.Fatal("Error loading .env file")
-    }
+    // err := godotenv.Load()
+    // if err != nil {
+    //     log.Fatal("Error loading .env file")
+    // }
 
 	//setup supabase
 	supabaseUrl := os.Getenv("SUPABASE_URL")
@@ -35,7 +35,7 @@ func InitDB() {
         log.Fatal("DB_DSN tidak ditemukan dalam .env")
     }
 
-	DB, err = sqlx.Connect("postgres", dsn)
+	DB, err := sqlx.Connect("postgres", dsn)
 
 	if err != nil {
 		log.Fatalf("failed to connect to the database: %v", err)
