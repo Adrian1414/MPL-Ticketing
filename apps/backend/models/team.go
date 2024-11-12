@@ -22,7 +22,7 @@ func GetAllTeams() ([]Team, error) {
 	}
 	// Get all teams from the database
 	var teams []Team
-	query := "SELECT id, name FROM teams"
+	query := "SELECT id, name FROM teams ORDER BY name"
 	// select untuk mendapatkan banyak rows
 	// err := sqlx.Select(database.DB, &teams, query)
 	err := database.DB.Select(&teams, query)

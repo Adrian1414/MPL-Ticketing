@@ -1,4 +1,4 @@
-package routes
+package controllers
 
 import (
 	"net/http"
@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func getAllRosters(c *gin.Context) {
+func GetAllRosters(c *gin.Context) {
 	rosters, err := models.GetAllRosters()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -18,7 +18,7 @@ func getAllRosters(c *gin.Context) {
 	c.JSON(http.StatusOK, rosters)
 }
 
-func createRoster(c *gin.Context) {
+func CreateRoster(c *gin.Context) {
 	var roster models.Roster
 	err := c.ShouldBindJSON(&roster)
 	if err != nil {
@@ -37,6 +37,6 @@ func createRoster(c *gin.Context) {
 	}
 	c.JSON(http.StatusCreated, gin.H{
 		"message": "Team created successfully",
-		"roster":    roster,
+		"roster":  roster,
 	})
 }

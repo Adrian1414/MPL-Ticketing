@@ -3,20 +3,21 @@ package routes
 import (
 	"net/http"
 
+	"example.com/mpl/controllers"
 	"github.com/gin-gonic/gin"
 )
 
 func RegisterRoute(server *gin.Engine) {
 	server.GET("/", getHome)
 
-	server.GET("/teams", getAllTeams)
-	server.GET("/teams/:id", getTeamByID)
-	server.POST("/teams", createTeam)
-	server.PUT("/teams/:id", updateTeam)
-	server.DELETE("/teams/:id", deleteTeam)
+	server.GET("/teams", controllers.GetAllTeams)
+	server.GET("/teams/:id", controllers.GetTeamByID)
+	server.POST("/teams", controllers.CreateTeam)
+	server.PUT("/teams/:id", controllers.UpdateTeam)
+	server.DELETE("/teams/:id", controllers.DeleteTeam)
 
-	server.GET("/rosters", getAllRosters)
-	server.POST("/rosters", createRoster)
+	server.GET("/rosters", controllers.GetAllRosters)
+	server.POST("/rosters", controllers.CreateRoster)
 }
 
 func getHome(context *gin.Context) {

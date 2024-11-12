@@ -1,4 +1,4 @@
-package routes
+package controllers
 
 import (
 	"net/http"
@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func getAllTeams(c *gin.Context) {
+func GetAllTeams(c *gin.Context) {
 	teams, err := models.GetAllTeams()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -20,7 +20,7 @@ func getAllTeams(c *gin.Context) {
 	c.JSON(http.StatusOK, teams)
 }
 
-func getTeamByID(c *gin.Context) {
+func GetTeamByID(c *gin.Context) {
 	teamId, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -38,7 +38,7 @@ func getTeamByID(c *gin.Context) {
 	c.JSON(http.StatusOK, team)
 	}
 
-func createTeam(c *gin.Context) {
+func CreateTeam(c *gin.Context) {
 	var team models.Team
 	err := c.ShouldBindJSON(&team)
 	if err != nil {
@@ -61,7 +61,7 @@ func createTeam(c *gin.Context) {
 	})
 }
 
-func updateTeam(c *gin.Context) {
+func UpdateTeam(c *gin.Context) {
 	teamId, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	// teamName := c.Param("name")
 	// teamName = strings.ToUpper(teamName)
@@ -95,7 +95,7 @@ func updateTeam(c *gin.Context) {
 	})
 }
 
-func deleteTeam(c *gin.Context) {
+func DeleteTeam(c *gin.Context) {
 	teamId, err := strconv.ParseInt(c.Param("id"), 10, 64)
 
 	if err != nil {
