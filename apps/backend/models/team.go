@@ -15,7 +15,7 @@ type Team struct {
 	Name string `json:"name" db:"name"`
 }
 
-func GetAllTeams() ([]Team, error) {\
+func GetAllTeams() ([]Team, error) {
 	if database.DB == nil {
 		log.Println("Database connection is nil")
 		return nil, errors.New("database connection is not initialized")
