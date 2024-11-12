@@ -40,7 +40,7 @@ func InitDB() {
     }
 
 	var err error
-	DB, err := sqlx.Connect("postgres", dsn)
+	DB, err = sqlx.Connect("postgres", dsn)
 	if err != nil {
 		log.Fatalf("failed to connect to the database: %v", err)
 	}
