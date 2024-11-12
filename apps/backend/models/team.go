@@ -3,6 +3,9 @@ package models
 import (
 	// "database/sql"
 
+	"errors"
+	"log"
+
 	"example.com/mpl/database"
 	// "github.com/jmoiron/sqlx"
 )
@@ -12,7 +15,11 @@ type Team struct {
 	Name string `json:"name" db:"name"`
 }
 
-func GetAllTeams() ([]Team, error) {
+func GetAllTeams() ([]Team, error) {\
+	if database.DB == nil {
+		log.Println("Database connection is nil")
+		return nil, errors.New("database connection is not initialized")
+	}
 	// Get all teams from the database
 	var teams []Team
 	query := "SELECT id, name FROM teams"

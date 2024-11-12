@@ -27,6 +27,10 @@ func InitDB() {
 	supabaseUrl := os.Getenv("SUPABASE_URL")
     supabaseKey := os.Getenv("SUPABASE_KEY")
 
+	if supabaseUrl == "" || supabaseKey == "" {
+		log.Fatal("SUPABASE_URL atau SUPABASE_KEY tidak ditemukan dalam environment variables")
+	}
+
 	Client = supabase.CreateClient(supabaseUrl, supabaseKey)
 
     // Mengambil DSN dari environment variable
@@ -35,12 +39,13 @@ func InitDB() {
         log.Fatal("DB_DSN tidak ditemukan dalam .env")
     }
 
+	var err error
 	DB, err := sqlx.Connect("postgres", dsn)
-
 	if err != nil {
 		log.Fatalf("failed to connect to the database: %v", err)
 	}
 
+	log.Printf("Connected to the database")
 	DB.SetMaxOpenConns(25)
 	DB.SetMaxIdleConns(5)
 }
